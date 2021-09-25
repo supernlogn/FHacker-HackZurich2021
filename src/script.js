@@ -7,8 +7,11 @@ function getSelectionText(){
         text = document.selection.createRange().text;
     }
     /* If nothing is highlighted, do nothing */
+
     let output_text = ''+document.getSelection().toString()
 
     if(text=''){return console.log('Nothing was highlighted')}
     
-    displayed_paragraph = document.getElementById('text').children[1]}
+    
+    console.log(output_text)
+}
