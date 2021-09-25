@@ -1,0 +1,13 @@
+(function() {
+    var translation = {"ERROR_GENERIC_PREFIX":"Anmeldung vorübergehend fehlgeschlagen.","ERROR_GENERIC_PREFIX2":"Bei andauerndem Problem ","ERROR_GENERIC_SUFFIX":"?","ERROR_PREFIX_AOL":"Anmeldung Gescheitert. Pruefen Sie Ihren Benutzernamehn und versuchen Sie's nochmal. ","ERROR_PREFIX_BLOGGER":"Anmeldung Gescheitert. Pruefen Sie Ihre Domäne und versuchen Sie's nochmal. ","ERROR_PREFIX_NETLOG":"Anmeldung Gescheitert. Pruefen Sie Ihren Nickname und versuchen Sie's nochmal. ","ERROR_PREFIX_OPENID":"Anmeldung Gescheitert. Pruefen Sie Ihr OpenID und versuchen Sie's nochmal. ","ERROR_PREFIX_USERNAME":"Anmeldung Gescheitert. Pruefen Sie Ihren Username und versuchen Sie's nochmal. ","ERROR_SUFFIX_AOL":"?","ERROR_SUFFIX_BLOGGER":"?","ERROR_SUFFIX_NETLOG":"?","ERROR_SUFFIX_OPENID":"?","ERROR_SUFFIX_USERNAME":"?","HEADER":"Melden Sie sich mit Ihrem Konto an","HELP":"Hilfe","INPUT_EXAMPLE_BLOGGER":"z.B. me.blogspot.com oder mybloggerdomain.com","INPUT_PROMPT_AOL":"Ihr AOL Name","INPUT_PROMPT_BLOGGER":"Ihre Blogger Domäne","INPUT_PROMPT_LIVEJOURNAL":"Ihr LiveJournal Benutzernahme","INPUT_PROMPT_NETLOG":"Ihr Netlog Nickname","INPUT_PROMPT_OPENID":"Ihre OpenID URL","INPUT_PROMPT_WORDPRESS":"Ihr WordPress Benutzernahme","SIGNING_IN":"Anmelden ...","MORE_INFO":"mehr Information","NOT_YOU":"Sind nicht Sie?","PAGE":"Seite","POWERED_BY_PREFIX":"Social Login ","POWERED_BY_SUFFIX":"von Janrain","SIGN_IN":"Anmelden","TRY_AGAIN":"Nochmal Versuchen","USE_ANOTHER_ACCOUNT":"Benutze ein anderes Konto","WELCOME_BACK":"Willkommen zurück","WELCOME_BACK_PREFIX":"Guten Tag ","WELCOME_BACK_SUFFIX":"","SIGN_IN_AS":"Sich anmelden als name"};
+    if (!janrain.settings.translate || janrain.settings.translate === {}) {
+        janrain.settings.translate = translation;
+    }
+    else {
+        for (var str in translation) {
+            if(!janrain.settings.translate[str] || str === "POWERED_BY_PREFIX" || str === "POWERED_BY_SUFFIX") {
+                janrain.settings.translate[str] = translation[str];
+            }
+        }
+    }
+})();
