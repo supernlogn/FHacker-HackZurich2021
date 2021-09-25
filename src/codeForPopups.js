@@ -1,6 +1,6 @@
-SERVER  = "inference.hackzurich2021.hack-with-admin.ch"
-APP_PATH = "api/question/hack_zurich"
-
+SERVER  = "https://inference.hackzurich2021.hack-with-admin.ch";
+APP_PATH = "api/question/hack_zurich";
+// SERVER = "https://valuenet.cloudlab.zhaw.ch";
 var lastToolTipChosen = null;
 function createToolTip(el, text) {
    lastToolTipChosen = el;
@@ -16,14 +16,14 @@ function getInfoForQuestion(questionText, beamsize=1)
     let xmlHttp = new XMLHttpRequest();
     xmlHttp.onreadystatechange = function() {
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
-            responseText = xmlHttp.response;
+            responseText = xmlHttp.responseText;
         }
         else {
             console.log("status " + xmlHttp.status);
         }
     }
     httpPath = SERVER + "/" + APP_PATH;
-    xmlHttp.open("PUT", httpPath, true); // true for asynchronous
+    xmlHttp.open("PUT", httpPath, false); // true for asynchronous
     xmlHttp.setRequestHeader("Content-Type", "application/json;charset=utf-8");
     xmlHttp.setRequestHeader("X-API-Key", "sjNmaCtviYzXWlS");
     xmlHttp.send({"question": questionText, "beam_size": beamsize});
