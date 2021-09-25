@@ -1,3 +1,5 @@
+SERVER  = ""
+APP_PATH = ""
 var lastToolTipChosen = null;
 function createToolTip(el, text) {
    lastToolTipChosen = el;
@@ -7,6 +9,17 @@ function createToolTip(el, text) {
    // newDiv.style.left = x + "px";
    // newDiv.style.top = y + "px";
 }
+
 function hideToolTip() {
   lastToolTipChosen.removeAttribute("data-tooltip");
+}
+
+function getAcccuracyForText() {
+    navigator.sendBeacon(SERVER + "/" + APP_PATH);
+}
+
+function requestQuestionSRF() {
+    let questionText = "";
+    let 
+    return 
 }
