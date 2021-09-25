@@ -1612,7 +1612,15 @@
             }
         }
 
-
+        /* Hide the tooltip content by default */
+        [data-tooltip]:before,
+        [data-tooltip]:after {
+            visibility: hidden;
+            -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+            filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=0);
+            opacity: 0;
+            pointer-events: none;
+        }
         [data-tooltip]:after {
             position: absolute;
             bottom: 150%;
