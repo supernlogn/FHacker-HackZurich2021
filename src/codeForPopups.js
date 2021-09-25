@@ -11,7 +11,7 @@ function createToolTip(el, text) {
    // newDiv.style.top = y + "px";
 }
 
-function getInfoForQuestion(questionText)
+function getInfoForQuestion(questionText, beamsize=1)
 {   let responseText = {};
     let xmlHttp = new XMLHttpRequest();
     xmlHttp.onreadystatechange = function() {
@@ -26,8 +26,7 @@ function getInfoForQuestion(questionText)
     xmlHttp.open("PUT", httpPath, true); // true for asynchronous
     xmlHttp.setRequestHeader("Content-Type", "application/json;charset=utf-8");
     xmlHttp.setRequestHeader("X-API-Key", "sjNmaCtviYzXWlS");
-    // xmlHttp.setRequestHeader("Connection", "keep-alive");
-    xmlHttp.send({"question": questionText, "beam_size": 2});
+    xmlHttp.send({"question": questionText, "beam_size": beamsize});
     console.log("request to " + httpPath);
     return responseText;
 }
