@@ -1,14 +1,17 @@
 var onlongtouch; 
 var timer;
-var touchduration = 800; //length of time we want the user to touch before we do something
+var touchduration = 300; //length of time we want the user to touch before we do something
 
 var sentence_text = ''
+var sentence_element = null
 
 window.addEventListener("contextmenu", e => e.preventDefault());
 window.addEventListener("selectionchange", e => e.preventDefault());
 
 function touchstart(e) {
+    console.log('Touch Start is fired')
     sentence_text = e.target.innerHTML
+    sentence_element = e.target
     e.preventDefault();
     if (!timer) {
         timer = setTimeout(onlongtouch, touchduration);
@@ -16,6 +19,7 @@ function touchstart(e) {
 }
 
 function touchend() {
+  console.log('Touch end is fired')
     //stops short touches from firing the event
     if (timer) {
         clearTimeout(timer);
@@ -23,12 +27,32 @@ function touchend() {
     }
 }
 
-onlongtouch = function() { 
+function onlongtouch(){ 
+
+    console.log('displaying notification')
     timer = null;
-    alert(sentence_text)
+
+    var response = 'Only 90% of it is correct'
+    var text = `<div class="notification">
+    
+  <div class="title">
+    <h3>SwissChecker</h3>
+  </div>
+  <div class="content">
+    <p>Notification body (success)</p>
+  </div>
+  
+  <div class="content"><p>` + response + `</p>
+  </div>
+  
+  <div class="indicator success"></div>
+  <span id='x'>x<span>
+  </div>`
+    document.body.innerHTML += text
+
+    document.getElementById('x').addEventListener('click', function(){hideToolTip()})
+
 };
-
-
 
 
 document.addEventListener("DOMContentLoaded", function(event) {
@@ -48,31 +72,36 @@ document.addEventListener("DOMContentLoaded", function(event) {
 });
 
 
-
-
-
-/* 
-function getSelectionText(){
-
-    var text = "";
-    if (window.getSelection) {
-        text = window.getSelection().toString();
-    } else if (document.selection && document.selection.type != "Control") {
-        text = document.selection.createRange().text;
-    }
-     If nothing is highlighted, do nothing 
-
-    let output_text = ''+document.getSelection().toString()
-
-    if(text=''){return console.log('Nothing was highlighted')}
+function hideToolTip() {
+    var notification_div = document.getElementsByClassName('notification')[0]
+    notification_div.classList += ' slide-out' 
     
-    
-    console.log(output_text)
+    setTimeout(function(){
+        notification_div.remove()}, 1000)
+
 }
 
-var article = document.getElementById('article')
+SERVER  = "inference.hackzurich2021.hack-with-admin.ch"
+APP_PATH = "api/question/hack_zurich"
 
-article.addEventListener('dblclick', function(){
-    console.log('event click works')
-    console.log(getSelectionText())
-}) */
+function getInfoForQuestion(questionText, beamsize=1)
+{   let responseText = {};
+    let xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() {
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+            responseText = xmlHttp.response;
+        }
+        else {
+            console.log("status " + xmlHttp.status);
+        }
+    }
+    httpPath = SERVER + "/" + APP_PATH;
+    xmlHttp.open("PUT", httpPath, true); // true for asynchronous
+    xmlHttp.setRequestHeader("Content-Type", "application/json;charset=utf-8");
+    xmlHttp.setRequestHeader("X-API-Key", "sjNmaCtviYzXWlS");
+    xmlHttp.send({"question": questionText, "beam_size": beamsize});
+    console.log("request to " + httpPath);
+    return responseText;
+}
+
+
