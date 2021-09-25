@@ -19,5 +19,6 @@ function getSelectionText(){
 var article = document.getElementById('article')
 
 article.addEventListener('dblclick', function(){
+    console.log('event click works')
     console.log(getSelectionText())
 })
