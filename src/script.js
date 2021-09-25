@@ -81,7 +81,7 @@ function hideToolTip() {
 
 }
 
-SERVER  = "inference.hackzurich2021.hack-with-admin.ch"
+SERVER  = "https://inference.hackzurich2021.hack-with-admin.ch"
 APP_PATH = "api/question/hack_zurich"
 
 function getInfoForQuestion(questionText, beamsize=1)
