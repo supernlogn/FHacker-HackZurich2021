@@ -40,6 +40,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
         sentences[i].addEventListener("touchstart", touchstart, false);
         sentences[i].addEventListener("touchend", touchend, false);
       }
+    for (let i = 0; i < sentences.length; i++) {
+        sentences[i].addEventListener("mousedown", touchstart);
+        sentences[i].addEventListener("mouseup", touchend);
+      }
 
 });
 
