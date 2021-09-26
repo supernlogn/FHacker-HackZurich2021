@@ -1,3 +1,3 @@
-# FHacker-HackZurich2021
-Repo for Fact Checker for HackZurich2021
+# SwissChecker-HackZurich2021
+Repo for SwissChecker for HackZurich2021
 
