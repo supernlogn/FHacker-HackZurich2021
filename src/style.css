@@ -6,24 +6,46 @@
 .vjs-fluid {
     padding-top: 56.25%
 }
+
+#logo{
+  position: absolute;
+  margin-left: -20px;
+  height: 17px;
+  width: 17px;
+}
+
+#innacurate_fact{
+  text-align: right !important;
+}
+
 .notification {
-    position: absolute;
-    top: -110%;
-    left: 50%;
-    transform: translate(-50%, 0);
+    position: absolute ;
+    margin-top: 420px;
+    margin-left: -30px;
     padding: 12px 32px;
+    color: white;
     border-radius: 12px;
-    background: #fff;
+    background: rgba(0,0,0,0.9);
     box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.1);
     animation: notification-slide-in 8s ease forwards;
     z-index: 999;
     min-width: 250px;
   }
+
+
+@media only screen and (max-width: 600px){
+  .notification {
+    min-width: 0px;
+    font-size: 13px;
+    left: 12%;
+    max-width: 8a0%;
+  }
+}
   .notification * {
     margin: 0;
   }
   .notification #x{
-      position: fixed;
+      position: absolute;
       right: 10px;
       top: 10px;
       cursor: pointer;
@@ -40,7 +62,7 @@
     border-radius: 12px;
   }
   .notification .indicator.success {
-    border-color: #00f700;
+    border-color:#FFD523;
   }
   
   .notification .content {
